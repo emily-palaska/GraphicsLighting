@@ -28,7 +28,7 @@ H = data['H']
 bg_color = data['bg_color']
 focal = data['focal']
 
-# Handle dimensions so that all vectors are 3xN
+# Dimension handling so that all vectors are 3xN
 cam_eye = np.array([cam_eye]).T
 cam_up = np.array([cam_up]).T
 cam_lookat = np.array([cam_lookat]).T
@@ -36,10 +36,12 @@ light_intensities = np.array(light_intensities).T
 light_positions = np.array(light_positions)
 Ia = np.array([Ia]).T
 bg_color = np.array(bg_color)
-shader = 'gouraud'
+shader = 'phong'
 
-# Apply render function
+# Redner object via implemented function
 img = render_object(shader, focal, cam_eye, cam_lookat, cam_up, bg_color, M, N, H, W, verts, vertex_colors, face_indices, ka, kd, ks, n, light_positions, light_intensities, Ia)
+
+# Results visualization
 plt.imshow(img)
 plt.show()
 plt.imsave(f'result_{shader}.png', img)
